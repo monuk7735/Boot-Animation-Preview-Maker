@@ -1,0 +1,5 @@
+1080 1920 60
+c 1 90 part0 #FFFFFF -1
+c 1 0 part1 #FFFFFF -1
+p 240 0 part2 #FFFFFF -1
+p 0 0 part3 #FFFFFF -1
