@@ -1,7 +1,7 @@
 # Boot-Animation-Preview-Maker
->Create Video Preview of bootanimation.zip of Android OS
+> Create Video Preview of bootanimation.zip of Android OS
 
-##How to use:
+### How to use:
 
 Preview Bootanimation.zip
 
@@ -17,7 +17,8 @@ Create Your Own Bootanimation.zip
 ```
 Clone the Repo
 Create input/bootanimation/
-Place Files according to this [Guide](https://android.googlesource.com/platform/frameworks/base/+/master/cmds/bootanimation/FORMAT.md)
+Place Files according to the Guide
 Run Script for Preview and to create bootanimation.zip
 Preview.avi bootanimation.zip files will be placed in /output
 ```
+[Guide](https://android.googlesource.com/platform/frameworks/base/+/master/cmds/bootanimation/FORMAT.md) to Create Bootanimation
