@@ -6,7 +6,7 @@
 Preview Bootanimation.zip
 
 ```
-Place bootanimation.zip file in input\
+Place bootanimation.zip file in input/
 Run Script for Preview
 Preview.avi file will be placed in output/
 ```
@@ -19,4 +19,4 @@ Place Files according to the Guide
 Run Script for Preview and to create bootanimation.zip
 Preview.avi | bootanimation.zip will be placed in output/
 ```
-[Guide](https://android.googlesource.com/platform/frameworks/base/+/master/cmds/bootanimation/FORMAT.md) to Create Bootanimation
+[Guide](https://android.googlesource.com/platform/frameworks/base/+/master/cmds/bootanimation/FORMAT.md) to Create Your Own Bootanimation
