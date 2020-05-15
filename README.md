@@ -1,7 +1,7 @@
 # Boot-Animation-Preview-Maker
 >Create Video Preview of bootanimation.zip of Android OS
 
-#####How to use:
+###How to use:
 
 Preview Bootanimation.zip
 
