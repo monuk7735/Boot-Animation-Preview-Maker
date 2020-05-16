@@ -24,8 +24,8 @@ if exist "input\bootanimation\desc.txt" rd /s /q input\bootanimation
 :SHOW_MENU
 cls
 CALL :HEADER_TEXT
-echo.1. Create Bootanimation Preview (for input\bootanimation or input\bootanimation.zip)
-echo.2. Create bootanimation.zip (from input\bootanimation)
+echo.1. Create Bootanimation Preview (for input\bootanimation\ or input\bootanimation.zip)
+echo.2. Create bootanimation.zip (from input\bootanimation\)
 echo.3. Exit
 echo.&echo.&set /P INPUT=Choose any Option():
 

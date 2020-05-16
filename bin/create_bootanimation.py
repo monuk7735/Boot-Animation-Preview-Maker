@@ -8,6 +8,8 @@ def zipdir(path, ziph):
             descFile.readline()
             for data in descFile.readlines():
                 temp = data.split(" ")
+                if len(temp) < 4:
+                    continue
                 temp[3] = temp[3].strip("\n")
                 images = os.listdir(path + temp[3])
                 for image in images:

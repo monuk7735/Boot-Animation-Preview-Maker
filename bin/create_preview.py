@@ -3,6 +3,7 @@
 
 from PIL import Image
 import zipfile
+import os
 from os import listdir, rmdir, remove, environ
 from os.path import isfile, join, isdir, exists
 import cv2 as cv
@@ -11,6 +12,8 @@ import shutil
 import glob
 environ['PYGAME_HIDE_SUPPORT_PROMPT'] = 'hide'
 import pygame
+import clock_image
+import subprocess
 
 input_path = "input/"
 extracted_path = input_path + "bootanimation/"
@@ -20,21 +23,11 @@ bootanimation_zip_path = input_path + "bootanimation.zip"
 try:
     f = open( extracted_path + "desc.txt")
     f.close()
-    # print("Existing Extracted Bootanimation Found")
-    # if input("Use Existing Files?(y/n)")[0].lower() == 'n':
-    #     f.close()
-    #     shutil.rmtree(extracted_path)
-    #     try:
-    #         zip_file = zipfile.ZipFile(input_path + 'bootanimation.zip', 'r')
-    #         zip_file.extractall(extracted_path)
-    #     except FileNotFoundError:
-    #         print('bootanimation.zip not found!!')
-    #         print('Exiting Program')
-    #         exit()
 except FileNotFoundError:
     try:
         zip_file = zipfile.ZipFile(bootanimation_zip_path, 'r')
         zip_file.extractall(extracted_path)
+        zip_file.close()
     except FileNotFoundError:
         print(bootanimation_zip_path + ' not found!!')
         print('Exiting Program')
@@ -53,9 +46,13 @@ print("\nWidth: ", width)
 print("Height: ", height)
 print("FPS: ", fps)
 
-out = cv.VideoWriter('.temppreview.avi', cv.VideoWriter_fourcc(
+out = cv.VideoWriter(output_path + '.temppreview.avi', cv.VideoWriter_fourcc(
     *'DIVX'), fps, (width, height))
 
+def openOutput():
+    pth = os.getcwd()
+    pth += "\output\preview.avi"
+    subprocess.Popen('explorer ' +  pth)
 
 def createAndWriteImage(count, pathOfImage, data, trimdata):
     if len(trimdata) > count:
@@ -80,21 +77,25 @@ def createAndWriteImage(count, pathOfImage, data, trimdata):
             toSave.paste(toSaveTemp, box = ((int)(width/2 - toSaveTemp.width/2), (int)(height/2 - toSaveTemp.height/2)))
         else:
             toSave = toSaveTemp
+    if len(data) > 5:
+        if "clock_font.png" in listdir(extracted_path):
+            clockImg = clock_image.createMainImage(data[5:], width, height, extracted_path)
+            toSave.paste(clockImg, mask = clockImg)
+        
     toSave.save(input_path + ".temp.png", format="PNG")
     outfile = cv.imread(input_path + ".temp.png", cv.IMREAD_COLOR)
     out.write(outfile)
 
-
 for oneLine in descFile.readlines():
-    if(len(oneLine) < 2):
-        continue
     data = oneLine.split(" ")
     lengthOfData = len(data)
+    if lengthOfData < 4 :
+        continue
     data[lengthOfData - 1] = data[lengthOfData - 1].strip("\n")  
     print("\nProcessing", data[3])
     print("Type:", data[0])
     if (data[1] == '0'):
-        data[1] = '5'
+        data[1] = '1'
         print("Repeat Times: 0 (Changed to 5 for Preview Only)")
     else:
         print("Repeat Times:", data[1])
@@ -129,7 +130,8 @@ for oneLine in descFile.readlines():
 descFile.close()
 remove(input_path + ".temp.png")
 out.release()
-shutil.move(".temppreview.avi", output_path + "preview.avi")
+shutil.move( output_path + ".temppreview.avi", output_path + "preview.avi")
+openOutput()
 c = ''
 while True:
     c = input("\nDelete extracted files(y/n): ")[0]
