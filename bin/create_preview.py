@@ -1,6 +1,3 @@
-
-
-
 from PIL import Image
 import zipfile
 import os
@@ -23,6 +20,17 @@ bootanimation_zip_path = input_path + "bootanimation.zip"
 try:
     f = open( extracted_path + "desc.txt")
     f.close()
+    if input("Extracted Files Found. Use The?(Y/N): ").lower() == 'n':
+        shutil.rmtree(extracted_path)
+        try:
+            zip_file = zipfile.ZipFile(bootanimation_zip_path, 'r')
+            zip_file.extractall(extracted_path)
+            zip_file.close()
+        except FileNotFoundError:
+            print(bootanimation_zip_path + ' not found!!')
+            print('Exiting Program')
+            exit()
+
 except FileNotFoundError:
     try:
         zip_file = zipfile.ZipFile(bootanimation_zip_path, 'r')
@@ -95,7 +103,7 @@ for oneLine in descFile.readlines():
     print("\nProcessing", data[3])
     print("Type:", data[0])
     if (data[1] == '0'):
-        data[1] = '1'
+        data[1] = '5'
         print("Repeat Times: 0 (Changed to 5 for Preview Only)")
     else:
         print("Repeat Times:", data[1])
@@ -134,7 +142,7 @@ shutil.move( output_path + ".temppreview.avi", output_path + "preview.avi")
 openOutput()
 c = ''
 while True:
-    c = input("\nDelete extracted files(y/n): ")[0]
+    c = input("\nDelete File Inside input/bootanimation?(Y/N): ")[0]
     if( c.lower() == 'n' or c.lower() == 'y'):
         break
 if c == 'y':
