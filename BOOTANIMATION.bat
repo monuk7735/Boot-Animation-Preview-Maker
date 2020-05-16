@@ -12,15 +12,6 @@ set output_file_path = "output\"
 if not exist "output\" mkdir "output\"
 if not exist "input\bootanimation\" mkdir "input\bootanimation\"
 
-
-if exist "input\bootanimation\desc.txt" echo.&set /P existing=Existing Files Found. Use Existing Files? [y/n]
-if /I "%existing%"=="y" goto :SHOW_MENU
-
-:DELETE_FILES
-if exist "input\bootanimation\desc.txt" rd /s /q input\bootanimation
-if exist "input\bootanimation\desc.txt" rd /s /q input\bootanimation
-if exist "input\bootanimation\desc.txt" rd /s /q input\bootanimation
-
 :SHOW_MENU
 cls
 CALL :HEADER_TEXT
@@ -36,13 +27,14 @@ if /I "%INPUT%" == "3" pause & EXIT
 goto :SHOW_MENU
 
 :HEADER_TEXT 
-echo. =============================================
-echo.        Boot Animation Preview Creator
+echo. ====================================================================================
 echo.
-echo.                  by monuk7735      
+echo.                           Boot Animation Preview Creator
+echo.
+echo.                                    by monuk7735      
 echo.
 echo.
-echo. =============================================
+echo. ====================================================================================
 echo.
-if /I "%existing%"=="y" echo. Using Existing Files in input/bootanimation/ & echo. &echo. =============================================  & echo.
+echo.
 EXIT /B 0
