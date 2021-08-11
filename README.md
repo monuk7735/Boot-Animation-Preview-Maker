@@ -12,16 +12,16 @@ Preview Bootanimation.zip
 
 ```
 Place bootanimation.zip file in input/
-Run Script for Preview
-Preview.avi file will be placed in output/
+Run main.py for preview
+Preview.gif file will be placed in output/
 ```
 
 Create Your Own Bootanimation.zip
 
 ```
 Create input/bootanimation/
-Place Files according to the Guide
-Run Script for Preview and to create bootanimation.zip
-Preview.avi | bootanimation.zip will be placed in output/
+Place Files according to the Official Guide
+Run main.py for preview and create bootanimation.zip
+Preview.gif | bootanimation.zip will be placed in output/
 ```
 [Official Guide](https://android.googlesource.com/platform/frameworks/base/+/master/cmds/bootanimation/FORMAT.md) to Create Your Own Bootanimation
