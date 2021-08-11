@@ -1,3 +1,6 @@
 .vscode/
 output/
 input/
+post_pics/
+__pycache__/
+.mypy_cache
